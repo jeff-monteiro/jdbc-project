@@ -1,0 +1,24 @@
+# Java related
+target/
+bin/
+*.jar
+*.war
+*.ear
+*.class
+
+# Eclipse specific
+bin/
+.project
+.classpath
+.settings/
+.metadata/
+*.launch
+*.pydevproject
+tmp/
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+db.properties
