@@ -1,6 +1,6 @@
 ## Ways to implement some stuffs
 
-* Example on how to implement the _Insertion of data_ by JDBC
+* Example on how to implement the _Insertion of a data in DB_ by JDBC
 
 ```
 public class Program {
@@ -40,6 +40,44 @@ public class Program {
             DB.closeStatement(st);
             DB.closeConnection();
         }
+	}
+}
+```
+
+* Example of How to implement the _Update of a data in DB_ using JDBC
+
+```
+public class Program {
+	
+	public static void main(String[] args) {
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		try {
+			conn = DB.getConnection();
+			
+			st = conn.prepareStatement(
+					"UPDATE seller "
+					+ "SET BaseSalary = BaseSalary + ? "
+					+ "WHERE "
+					+ "(DepartmentId = ?)"
+					);
+			st.setDouble(1, 200.00);
+			st.setInt(2, 2);
+			
+			int rowsAffected = st.executeUpdate();
+			
+			System.out.println("Done! " + rowsAffected);
+					
+		} 
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			DB.closeStatement(st);
+			DB.closeConnection();
+		}
+		
 	}
 }
 ```
