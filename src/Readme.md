@@ -25,8 +25,21 @@ public class Program {
             st.setDouble(4, 3000.0);
             st.setInt(5,4);
 
-            //When we need to change the data, we execute this command below
-            int rowsAffected = st.executeUpdate();
+            /*
+            st = conn.prepareStatement("INSERT INTO department (Name) values ('D1'), ('D2')",
+					Statement.RETURN_GENERATED_KEYS);
+            */
+            //When we need to see the data, we execute this command below
+			int rowsAffected = st.executeUpdate();
+
+			if (rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				while (rs.next()) {
+					int id = rs.getInt(1);
+				}
+			} else {
+				System.out.println("No rows affected!");
+			}
 
             System.out.println("Done! Rows affected: " + rowsAffected);
         }
